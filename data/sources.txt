@@ -1,0 +1,8 @@
+Sources:
+
+BLS QCEW: https://www.bls.gov/cew/downloadable-data-files.htm
+State Leg: https://www.ncsl.org/research/about-state-legislatures/partisan-composition.aspx
+State Budget: https://www.nasbo.org/reports-data/summaries-proposed-enacted
+Alaska 2002 Budget: https://omb.alaska.gov/ombfiles/02_budget/02enacted_deptsummary.pdf
+
+

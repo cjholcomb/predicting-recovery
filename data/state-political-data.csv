@@ -1,0 +1,53 @@
+State Code,State,Region,2001 Gov,2001 Legis,2001 Fiscal,2008 Gov,2008 Legis,2008 Fiscal,2020 Gov,2020 Legis,2020 Fiscal
+01000,Alabama,Southeast,D,D,5213,R,R,16392,R,R,9485
+02000,Alaska,Far West,D,R,1252,R,R,5170,R,R,4701
+04000,Arizona,Southwest,D,S,7371,D,R,10201,R,R,11650
+05000,Arkansas,Southeast,R,D,3240,D,R,4274,R,R,5384
+06000,California,Far West,D,D,78053,R,D,102986,D,D,149749
+08000,Colorado,Rocky Mountain,R,S,5694,D,D,7908,D,D,13308
+09000,Connecticut,New England,R,D,11883,R,D,16654,D,D,19449
+10000,Delaware,Mid-Atlantic,D,S,2429,D,D,3422,D,D,4671
+11000,District of Columbia,Mid-Atlantic,D,N,,D,N,,D,N,15381
+12000,Florida,Southeast,R,R,19918,R,R,27513,R,R,34244
+13000,Georgia,Southeast,D,D,13985,R,R,19310,R,R,25739
+15000,Hawaii,Offshore,D,D,3365,R,D,5407,D,D,8370
+16000,Idaho,Rocky Mountain,R,R,1828,R,R,2799,R,R,3910
+17000,Illinois,Great Lakes,R,S,17601,D,D,22140,D,D,37678
+18000,Indiana,Great Lakes,D,S,10164,R,R,12880,R,R,16831
+19000,Iowa,Plains,D,R,4887,D,S,5867,R,R,7638
+20000,Kansas,Plains,R,R,4430,D,R,6102,D,R,7757
+21000,Kentucky,Southeast,D,S,6931,D,S,9334,D,R,11867
+22000,Louisiana,Southeast,R,D,6204,R,R,10444,D,R,9813
+23000,Maine,New England,I,S,2572,D,D,3084,D,D,3934
+24000,Maryland,Mid-Atlantic,D,D,10238,D,D,14488,R,D,19642
+25000,Massachusetts,New England,R,D,20368,D,D,29282,R,D,35182
+26000,Michigan,Great Lakes,R,R,9860,D,R,9822,D,R,10688
+27000,Minnesota,Plains,I,S,12755,R,D,17600,D,S,23929
+28000,Mississippi,Southeast,D,D,3457,R,R,4830,R,R,5746
+29000,Missouri,Plains,D,S,7583,R,R,8084,R,R,10104
+30000,Montana,Rocky Mountain,R,R,1270,D,R,4066,D,R,2574
+31000,Nebraska,Plains,R,N,2479,R,N,3248,R,N,4625
+32000,Nevada,Far West,R,S,1691,R,D,4031,D,D,4408
+33000,New Hampshire,New England,D,R,1071,D,S,1515,R,D,1563
+34000,New Jersey,Mid-Atlantic,R,R,20811,D,D,33112,D,D,39643
+35000,New Mexico,Southwest,R,D,3620,D,D,6027,D,D,8030
+36000,New York,Mid-Atlantic,R,S,36840,D,D,53385,D,D,79011
+37000,North Carolina,Southeast,D,D,13446,D,R,20736,D,R,24407
+38000,North Dakota,Plains,R,R,819,R,R,1204,R,R,2422
+39000,Ohio,Great Lakes,R,R,21143,D,R,25722,R,R,35045
+40000,Oklahoma,Southwest,R,D,4749,D,R,5981,R,R,7494
+41000,Oregon,Far West,D,R,5112,D,D,6980,D,R,10981
+42000,Pennsylvania,Mid-Atlantic,R,R,19862,D,R,26969,D,R,34596
+72000,Puerto Rico,Offshore,D,N,,D,,,D,N,
+44000,Rhode Island,New England,R,D,2483,R,D,3405,D,D,4086
+45000,South Carolina,Southeast,D,S,5423,R,R,7149,R,R,8575
+46000,South Dakota,Plains,R,R,793,R,R,1146,R,R,1717
+47000,Tennessee,Southeast,R,D,7293,D,R,11570,R,R,15805
+48000,Texas,Southwest,R,R,29003,R,R,39646,R,R,60775
+49000,Utah,Rocky Mountain,R,R,3717,R,R,5784,R,R,7927
+50000,Vermont,New England,D,S,867,R,D,1225,R,D,1655
+51000,Virginia,Southeast,R,R,11270,D,S,15099,D,D,22751
+53000,Washington,Far West,D,S,10827,D,D,14616,D,D,24675
+54000,West Virginia,Southeast,D,D,2547,D,D,3824,R,R,4821
+55000,Wisconsin,Great Lakes,R,S,11078,D,R,13527,D,R,18387
+56000,Wyoming,Rocky Mountain,R,R,370,D,R,3132,R,R,1627
