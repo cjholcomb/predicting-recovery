@@ -1,0 +1,16 @@
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+eta                  | 0.01     | [0.01, 0.2, 0.3]
+min_child_weight     | 1        | [1, 6, 2]
+max_depth            | 10       | [3, 10, 2]
+gamma                | 0        | [0]
+max_delta_step       | 0        | [0]
+subsample            | 0.8      | [0.8]
+colsample_bytree     | 0.8      | [0.8]
+colsample_bylevel    | 1        | [1]
+lambda               | 1        | [1]
+alpha                | 0        | [0]
+scale_pos_weight     | 1        | [1]
+scoring              | roc_auc  | ['roc_auc']
+cv                   | 5        | [5]

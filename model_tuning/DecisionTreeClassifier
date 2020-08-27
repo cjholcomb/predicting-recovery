@@ -1,0 +1,48 @@
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 200      | [50, 100, 200]
+min_samples_split    | 2        | [2, 5, 10]
+min_samples_leaf     | 20       | [13, 15, 20]
+max_depth            | 15       | [10, 15, 20]
+
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 300      | [150, 200, 300]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 50       | [20, 30, 50]
+max_depth            | 13       | [13, 15, 17]
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 500      | [250, 300, 500]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 100      | [40, 50, 100]
+max_depth            | 14       | [12, 13, 14]
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 1000     | [500, 1000]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 200      | [100, 200, 300]
+max_depth            | 14       | [14]
+
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 1000     | [1000, 5000, 10000]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 175      | [175, 200, 25]
+max_depth            | 14       | [14]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+max_features         | 1000     | [700, 1000, 1300]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 175      | [175, 200, 25]
+max_depth            | 14       | [14]
