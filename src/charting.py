@@ -46,7 +46,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
 fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='delta_percap', 
-                           color_continuous_scale="piyg",
+                           color_continuous_scale="prgn",
                            color_continuous_midpoint=0,
                            range_color = (-0.25,0.25),
                            scope="usa",
@@ -57,7 +57,7 @@ fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
 fig.show()
 
 fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='delta', 
-                           color_continuous_scale="Spectral",
+                           color_continuous_scale="rdylgn",
                            color_continuous_midpoint=0,
                            scope="usa",range_color=(-10000, 10000),
                            labels={'delta':'Change in jobs'},

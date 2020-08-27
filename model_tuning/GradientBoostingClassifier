@@ -53,3 +53,11 @@ Parameter            | Optimal  | Gridsearch values
 learning_rate        | 0.1      | [0.1]
 n_estimators         | 375      | [325, 375]
 max_depth            | 2        | [2]
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.01     | [0.1, 0.05, 0.01]
+n_estimators         | 375      | [375]
+max_depth            | 2        | [2]
+
+gbc = GBC(learning_rate =0.01, n_estimators = 375, max_depth = 2)

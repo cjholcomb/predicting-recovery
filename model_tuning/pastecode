@@ -1,0 +1,24 @@
+
+run src/models.py
+
+dtc =DTC(max_features = 500,min_samples_split = 2,min_samples_leaf = 175,max_depth = 14)
+
+rfc = RFC(n_estimators = 310, max_depth = 15, min_samples_split=2, min_samples_leaf = 5)
+
+gbc = GBC(learning_rate =0.01, n_estimators = 375, max_depth = 2)
+
+bnb = BNB()
+
+cnb = CNB()
+
+gnb = GNB()
+
+mnb = MNB()
+
+dmlp = Sequential()
+dmlp.add(Dense(350, activation='relu', input_shape=(feature_vector_length,)))
+dmlp.add(Dense(50, activation='relu'))
+dmlp.add(Dense(num_classes, activation='sigmoid',kernel_constraint=max_norm(3), bias_constraint=max_norm(3)))
+dmlp.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
+
+plot_ROC_curves([dtc, rfc, gbc, bnb, cnb, mnb, gnb, dmlp])
