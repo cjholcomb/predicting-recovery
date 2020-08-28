@@ -137,4 +137,116 @@ To do some basic sanity checks on my PCA, I ran basic Logistic Regression models
 
 [put ROC curves here]
 
-Around this time I discovered an issue with the data. Due to a mistake in indexing, most of the political data I had collected did not find its way to the final dataset. I had a dilemma here, I could remove the political data and proceed with only the industry and population data. This would, however, negate any reason to drop non-county datapoints(Cities and MicroSA) from my dataset. I would need to re-tune the models with nearly twice as much data. Or I could fix the problem and re-tune with the correct pollitical variables. I went with option 2.
+Around this time I discovered an issue with the data. Due to a mistake in indexing, most of the political data I had collected did not find its way to the final dataset. I had a dilemma here, I could remove the political data and proceed with only the industry and population data. This would, however, negate any reason to drop non-county datapoints(Cities and MicroSA) from my dataset. I would need to re-tune the models with nearly twice as much data. Or I could fix the problem and re-tune with the correct political variables. I went with option 2.
+
+After some serious GridSearch time, I managed to get both a Random Forest and Gradient Boost model working well enough. Since this situation does not really favor prescision over recall, I used f1 as my metric for evaluating the model.
+
+(See appendix for GridSearch records)
+
+I also decided to use the model hyperparameters on the Regeressor versions of the three best-performing models, to see if I could also predict the change in jobs (rather than just whether a county would recover).
+
+<style type="text/css">
+.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;}
+.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
+  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
+  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
+.tg .tg-ezbu{background-color:#eee8d5;border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
+.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
+.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-d421{background-color:#eee8d5;border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
+.tg .tg-f8tv{border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
+</style>
+<table class="tg">
+<thead>
+  <tr>
+    <th class="tg-0pky"></th>
+    <th class="tg-fymr">2001</th>
+    <th class="tg-fymr">2008</th>
+    <th class="tg-fymr">Both</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td class="tg-d421">n</td>
+    <td class="tg-ezbu">3264</td>
+    <td class="tg-ezbu">3257</td>
+    <td class="tg-ezbu">6521</td>
+  </tr>
+  <tr>
+    <td class="tg-f8tv">% Recovered</td>
+    <td class="tg-c3ow">62%<br></td>
+    <td class="tg-c3ow">52%</td>
+    <td class="tg-c3ow">57%</td>
+  </tr>
+  <tr>
+    <td class="tg-d421">Mean</td>
+    <td class="tg-ezbu">0.05</td>
+    <td class="tg-ezbu">0.06</td>
+    <td class="tg-ezbu">0.05</td>
+  </tr>
+  <tr>
+    <td class="tg-f8tv">St. Dev</td>
+    <td class="tg-c3ow">0.58</td>
+    <td class="tg-c3ow">0.62</td>
+    <td class="tg-c3ow">0.60<br></td>
+  </tr>
+  <tr>
+    <td class="tg-d421">Min</td>
+    <td class="tg-ezbu">-3.68</td>
+    <td class="tg-ezbu">-1.42</td>
+    <td class="tg-ezbu">-3.68</td>
+  </tr>
+  <tr>
+    <td class="tg-f8tv">25%</td>
+    <td class="tg-c3ow">-0.03</td>
+    <td class="tg-c3ow">-0.05</td>
+    <td class="tg-c3ow">-0.04</td>
+  </tr>
+  <tr>
+    <td class="tg-d421">Median</td>
+    <td class="tg-ezbu">0.02</td>
+    <td class="tg-ezbu">0.01</td>
+    <td class="tg-ezbu">0.01</td>
+  </tr>
+  <tr>
+    <td class="tg-f8tv">75%</td>
+    <td class="tg-c3ow">0.07</td>
+    <td class="tg-c3ow">0.07</td>
+    <td class="tg-c3ow">0.07</td>
+  </tr>
+  <tr>
+    <td class="tg-d421">Max</td>
+    <td class="tg-ezbu">28.19<br></td>
+    <td class="tg-ezbu">29.67<br></td>
+    <td class="tg-ezbu">29.67<br></td>
+  </tr>
+</tbody>
+</table>
+
+[include confusion matricies]
+
+Naive Bayes didn't pay off for me (neither did a Dense Multilayer Percpitron network), so I didn't spend too much time tuning them. After a long night, I landed on some optimal parameters.
+
+While for the classifiers, Random Forest performed the best, but not by much (the f1 score difference is lost in the rounding), but the r2 score is much better from Gradient Boosting, which gives it the advantage.
+
+### Feature Importance
+
+Feature importance is not really key to my goal of predicting the outcome of this recession, but there is a great deal of data excluded for lack of political data. The only political data that shows up high in the feature importance of any model is the State Expenditures- removing it from future research will have minimal impact and allow me to include the excluded data to train future models.
+
+## Results:
+
+[insert maps here]
+[top 10?]
+
+
+## Future Steps:
+
+I'm exited to work more with this data, and will be doing so in the future. Here is a list of possible avenues to continue this research:
+
+1. Solve the "time to recover" problem, and produce a model to predict that.
+2. Update the prediction data with 2020 population/industry.
+3. Run the models using monthly rather than quarterly data, whicb might provide additional insight.
+4. Run the models on *wages* rather than raw job numbers.
+5. Use Flask to make a "report card" on a given area, showing its history and forecast for the future.
