@@ -2,11 +2,14 @@ from src.dictionaries import *
 import pandas as pd
 import numpy as np
 
+#This file takes the quarterly raw data from the QCEW and turns them into quarterly timelines. From here, we can compute target variables.
+
+#adds a column specifying both the quater and the year in a single variable.
 def add_qtrid(df):
     df['qtrid'] = df['year'] + (df['qtr']/4)
     return df
 
-#import one year of data to explore
+#import one year of data (for exploration)
 def import_one(year):
     filepath = 'data/by_county/' + str(year) + '.csv'
     df = pd.read_csv(filepath, dtype = schema_dict)
@@ -15,7 +18,7 @@ def import_one(year):
             df = df.drop([column], axis = 1)
     return df
 
-#import all data into a single file
+#import all data into a single dataframe
 def import_all(years):
     df = import_one(years[0])
     for year in years[1:]:
@@ -23,67 +26,93 @@ def import_all(years):
     df = add_qtrid(df)
     return df
 
-
+#produces a timeline dataframe(and exports to csv) for 2001
 def create_timeline_2001(variable):
     df = import_all(recession1_years)
     df = df.pivot_table(columns = 'qtrid', values = variable, index = ['area_fips', 'area_title'], aggfunc = np.sum)
     df = df.reset_index()
+    #this specifies when the jobs numbers "bottom-out" during the recession
     df['nadir'] = df.iloc[:,9:].min(axis=1)
+    #captures the quarter that the lowest jobs numbers happen
     df['nadir_qtr'] = df.iloc[:,9:].idxmin(axis=1)
     df['nadir_qtr_ct'] = (df['nadir_qtr'] - 2000.25) * 4
+    #counts the number of quarters since the beginning of the timeframe
     df['nadir_qtr_ct'] = ((df['nadir_qtr'] - 2000) * 4).astype('int32')
     df['pre-peak'] = 0
     df['post-peak'] = 0
+    #computes the highest points before and after the nadir
     for index, row in df.iterrows():
         slicer = row['nadir_qtr_ct'] + 3
         pre_peak = row.iloc[2:slicer].max()
         df.iloc[index,37] = pre_peak
         post_peak = row.iloc[slicer:].max()
         df.iloc[index,38] = post_peak
+    #TARGET: did the county achieve its former job numbers before the next recession
     df['recovery'] = df['post-peak'] >= df['pre-peak']
+    #different in before/after jobs numbers
     df['delta'] = df['post-peak'] - df['pre-peak']
+    #export the data
     df.to_csv('data/Recession1_timeline.csv')
     return df
 
+#produces a timeline dataframe(and exports to csv) for 2008
 def create_timeline_2008(variable):
     df = import_all(recession2_years)
     df = df.pivot_table(columns = 'qtrid', values = variable, index = ['area_fips', 'area_title'], aggfunc = np.sum)
     df = df.dropna(axis = 0)
     df = df.reset_index()
+    #this specifies when the jobs numbers "bottom-out" during the recession
     df['nadir'] = df.iloc[:,9:].min(axis=1)
+    #captures the quarter that the lowest jobs numbers happen
     df['nadir_qtr'] = df.iloc[:,9:].idxmin(axis=1)
+    #counts the number of quarters since the beginning of the timeframe
     df['nadir_qtr_ct'] = (df['nadir_qtr'] - 2007.25) * 4
     df['pre-peak'] = 0
     df['post-peak'] = 0
+    #computes the highest points before and after the nadir
     for index, row in df.iterrows():
         slicer = int(row['nadir_qtr_ct'] + 3)
         pre_peak = row.iloc[2:slicer].max()
         df.iloc[index,53] = pre_peak
         post_peak = row.iloc[slicer:].max()
         df.iloc[index,54] = post_peak
+    #TARGET: did the county achieve its former job numbers before the next recession
     df['recovery'] = df['post-peak'] >= df['pre-peak']
+    #different in before/after jobs numbers
     df['delta'] = df['post-peak'] - df['pre-peak']
+    #export the data
     df.to_csv('data/Recession2_timeline.csv')
     return df
 
+#creates the main dataset that will be used for training and evaluating models
 def create_training_dataset():
+    #import political data
     df_political2001 = pd.read_csv('data/state-political-data.csv')
     df_political2001 = df_political2001.drop(0)
-    df_political2001.set_index('State Code')
+    df_political2001 = df_political2001.set_index('State Code')
+    #import population data
     df_population2001 = pd.read_csv('data/county-population-data.csv')
     df_population2001 = df_population2001.drop(0)
-    df_population2001.set_index('State Code')
-    df = df_political2001.join(df_population2001,how = 'right', lsuffix = 'pop')
-    df_2001 = df.drop(columns = ['State Codepop', '2008 Gov', '2008 Legis', '2008 Fiscal', '2020 Gov', '2020 Legis', '2020 Fiscal', '2008', '2019'], axis =1)
+    df_population2001 = df_population2001.set_index('State Code')
+    #merge- drops datapoints without political data
+    df = df_political2001.join(df_population2001,how = 'left', lsuffix = 'pop')
+    #drops columns unrelated to the year in question
+    df_2001 = df.drop(columns = [ '2008 Gov', '2008 Legis', '2008 Fiscal', '2020 Gov', '2020 Legis', '2020 Fiscal', '2008', '2019'], axis =1)
+    #removes references to current year in columns
     df_2001 = df_2001.rename(columns = {'2001 Fiscal': 'fiscal','2001 Gov':'gov_party', '2001 Legis': 'legis_party', '2001':'population', 'Code':'area_fips'})
     df_2001 = df_2001.set_index('area_fips')
+    #creates dummmy variables for categorical features and drops redundancies
     df_2001 = pd.get_dummies(df_2001, columns = ['Region', 'gov_party', 'legis_party'])
     df_2001 = df_2001.drop(columns = ['Region_Offshore', 'gov_party_I', 'legis_party_N'], axis =1)
+    #loads the industry feature files
     df_industry2001 = pd.read_csv('data/2001emppcg.csv', low_memory = False)
     df_industry2001 = df_industry2001.set_index('area_fips')
+    #joins the data, removes columns with missing data
     df_2001 = df_2001.join(df_industry2001, how = 'inner', rsuffix = 'indus' )
+    #loads the timelines created above
     df_target2001 = pd.read_csv('data/Recession1_timeline.csv')
     df_target2001 = df_target2001.set_index('area_fips')
+    #drops columns not needed for models
     df_target2001 = df_target2001.drop(columns=['Unnamed: 0','area_title', '2000.25', '2000.5', '2000.75',
        '2001.0', '2001.25', '2001.5', '2001.75', '2002.0', '2002.25', '2002.5',
        '2002.75', '2003.0', '2003.25', '2003.5', '2003.75', '2004.0',
@@ -91,19 +120,20 @@ def create_training_dataset():
        '2005.75', '2006.0', '2006.25', '2006.5', '2006.75', '2007.0',
        '2007.25', '2007.5', '2007.75', '2008.0', 'nadir', 'nadir_qtr',
        'nadir_qtr_ct', 'pre-peak', 'post-peak'])
+    #final join- contains only data that across most features
     df_2001 = df_2001.join(df_target2001,how='inner', rsuffix = '_target')
     df_2001['year'] = '2001'
-    df_2001 = df_2001.drop(columns = ['fiscal', 'State'])
     df_2001 = df_2001.reset_index()
 
+    #repeats the above for 2008
     df_political2008 = pd.read_csv('data/state-political-data.csv')
     df_political2008 = df_political2008.drop(0)
-    df_political2008.set_index('State Code')
+    df_political2008 = df_political2008.set_index('State Code')
     df_population2008 = pd.read_csv('data/county-population-data.csv')
     df_population2008 = df_population2008.drop(0)
-    df_population2008.set_index('State Code')
+    df_population2008 = df_population2008.set_index('State Code')
     df = df_political2008.join(df_population2008,how = 'right', lsuffix = 'pop')
-    df_2008 = df.drop(columns = ['State Codepop', '2001 Gov', '2001 Legis', '2001 Fiscal', '2020 Gov', '2020 Legis', '2020 Fiscal', '2001', '2019'], axis =1)
+    df_2008 = df.drop(columns = ['2001 Gov', '2001 Legis', '2001 Fiscal', '2020 Gov', '2020 Legis', '2020 Fiscal', '2001', '2019'], axis =1)
     df_2008 = df_2008.rename(columns = {'2008 Fiscal': 'fiscal','2008 Gov':'gov_party', '2008 Legis': 'legis_party', '2008':'population', 'Code':'area_fips'})
     df_2008 = df_2008.set_index('area_fips')
     df_2008 = pd.get_dummies(df_2008, columns = ['Region', 'gov_party', 'legis_party'])
@@ -128,9 +158,19 @@ def create_training_dataset():
     df_2008 = df_2008.drop(columns = ['fiscal', 'State'])
     df_2008 = df_2008.reset_index()
 
-    df_merge = df_2001.append(df_2008)
-    df_merge = df_merge.fillna(0)
+    df_merge.to_csv('data/full_dataset.csv')
 
+    
+    #adds 2001 and 2008 into a single dataframe
+    df_merge = df_2001.append(df_2008)
+    #fills NaN values (should only be industry codes that did not exist in 2001)
+    df_merge = df_merge.fillna(0)
+    #Secondary Target: change in jobs per capita
+    df_merge['delta_percap'] = df_merge['delta'] / df_merge['population']
+    #Export the data
+    df_merge.to_csv('data/full_dataset.csv')
+
+#very similar to above- but does not include target datasets. Will be used once model is complete to make predictions
 def create_prediction_dataset():
     df_political2020 = pd.read_csv('data/state-political-data.csv')
     df_political2020 = df_political2020.drop(0)
@@ -151,6 +191,7 @@ def create_prediction_dataset():
     df_2020 = df_2020.drop(columns = ['fiscal', 'State'])
     df_2020 = df_2020.reset_index()
 
+#compiles the data without dummy variables for EDA
 def create_EDA_dataset():
     df_political2001 = pd.read_csv('data/state-political-data.csv')
     df_political2001 = df_political2001.drop(0)
@@ -162,8 +203,6 @@ def create_EDA_dataset():
     df_2001 = df.drop(columns = ['State Codepop', '2008 Gov', '2008 Legis', '2008 Fiscal', '2020 Gov', '2020 Legis', '2020 Fiscal', '2008', '2019'], axis =1)
     df_2001 = df_2001.rename(columns = {'2001 Fiscal': 'fiscal','2001 Gov':'gov_party', '2001 Legis': 'legis_party', '2001':'population', 'Code':'area_fips'})
     df_2001 = df_2001.set_index('area_fips')
-# df_2001 = pd.get_dummies(df_2001, columns = ['Region', 'gov_party', 'legis_party'])
-# df_2001 = df_2001.drop(columns = ['Region_Offshore', 'gov_party_I', 'legis_party_N'], axis =1)
     df_industry2001 = pd.read_csv('data/2001emppcg.csv', low_memory = False)
     df_industry2001 = df_industry2001.set_index('area_fips')
     df_2001 = df_2001.join(df_industry2001, how = 'inner', rsuffix = 'indus' )
