@@ -32,6 +32,7 @@ fig = px.choropleth(df_2001, geojson = counties, locations='area_fips', color='d
                            title= '2001: per capita'
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.suptitle('2001 Job Growth per capita')
 fig.show()
 
 fig = px.choropleth(df_2001, geojson = counties, locations='area_fips', color='delta', 
@@ -43,6 +44,7 @@ fig = px.choropleth(df_2001, geojson = counties, locations='area_fips', color='d
                            title= '2001: Total delta'
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.suptitle('2001 Job')
 fig.show()
 
 fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='delta_percap', 
@@ -54,6 +56,7 @@ fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='d
                            title= '2008: per capita'
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.suptitle('2008 Job Growth per capita')
 fig.show()
 
 fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='delta', 
@@ -64,5 +67,6 @@ fig = px.choropleth(df_2008, geojson = counties, locations='area_fips', color='d
                            title= '2008: Total delta'
                           )
 fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0})
+# fig.suptitle('2008 Job Growth')
 fig.show()
 
