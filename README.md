@@ -151,76 +151,110 @@ I also decided to use the model hyperparameters on the Regeressor versions of th
   font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
 .tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
   font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-ezbu{background-color:#eee8d5;border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-d421{background-color:#eee8d5;border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
-.tg .tg-f8tv{border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
+.tg .tg-487o{background-color:#96fffb;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-gegp{background-color:#fd6864;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-zlpz{background-color:#cbcefb;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-1mhx{background-color:#ffa1fa;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-wqgo{background-color:#cbcefb;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-1uui{background-color:#fe996b;border-color:#000000;color:#000000;text-align:center;vertical-align:top}
+.tg .tg-8385{background-color:#9698ed;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-d0s8{background-color:#fd6864;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-jo73{background-color:#343434;border-color:#000000;color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-cvjw{background-color:#343434;border-color:#000000;color:#ffffff;font-style:italic;font-weight:bold;text-align:center;
+  vertical-align:top}
+.tg .tg-rai2{background-color:#9698ed;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-qpy6{background-color:#9aff99;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-k0nx{background-color:#9aff99;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-bk7u{background-color:#ffa1fa;border-color:#000000;text-align:center;vertical-align:top}
+.tg .tg-bt07{background-color:#fe996b;border-color:#000000;color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-u7jh{background-color:#96fffb;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-ynie{background-color:#ff00ff;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
+.tg .tg-9jwl{background-color:#ff00ff;border-color:#000000;text-align:center;vertical-align:top}
 </style>
 <table class="tg">
 <thead>
   <tr>
-    <th class="tg-0pky"></th>
-    <th class="tg-fymr">2001</th>
-    <th class="tg-fymr">2008</th>
-    <th class="tg-fymr">Both</th>
+    <th class="tg-jo73"></th>
+    <th class="tg-cvjw">AUC</th>
+    <th class="tg-cvjw">Accuracy</th>
+    <th class="tg-cvjw">Precision</th>
+    <th class="tg-cvjw">Recall</th>
+    <th class="tg-cvjw">f1</th>
+    <th class="tg-cvjw">r**2</th>
   </tr>
 </thead>
 <tbody>
   <tr>
-    <td class="tg-d421">n</td>
-    <td class="tg-ezbu">3264</td>
-    <td class="tg-ezbu">3257</td>
-    <td class="tg-ezbu">6521</td>
+    <td class="tg-8385">Decision Tree</td>
+    <td class="tg-rai2">.63</td>
+    <td class="tg-rai2">.60</td>
+    <td class="tg-rai2">.79</td>
+    <td class="tg-rai2">.41</td>
+    <td class="tg-rai2">.54</td>
+    <td class="tg-rai2">.13</td>
   </tr>
   <tr>
-    <td class="tg-f8tv">% Recovered</td>
-    <td class="tg-c3ow">62%<br></td>
-    <td class="tg-c3ow">52%</td>
-    <td class="tg-c3ow">57%</td>
+    <td class="tg-d0s8">Random Forest</td>
+    <td class="tg-gegp">.65</td>
+    <td class="tg-gegp">.67</td>
+    <td class="tg-gegp">.70</td>
+    <td class="tg-gegp">.73</td>
+    <td class="tg-gegp">.71</td>
+    <td class="tg-gegp">.33</td>
   </tr>
   <tr>
-    <td class="tg-d421">Mean</td>
-    <td class="tg-ezbu">0.05</td>
-    <td class="tg-ezbu">0.06</td>
-    <td class="tg-ezbu">0.05</td>
+    <td class="tg-qpy6">Gradient Boost</td>
+    <td class="tg-k0nx">.66</td>
+    <td class="tg-k0nx">.67</td>
+    <td class="tg-k0nx">.71</td>
+    <td class="tg-k0nx">.71</td>
+    <td class="tg-k0nx">.71</td>
+    <td class="tg-k0nx">.46</td>
   </tr>
   <tr>
-    <td class="tg-f8tv">St. Dev</td>
-    <td class="tg-c3ow">0.58</td>
-    <td class="tg-c3ow">0.62</td>
-    <td class="tg-c3ow">0.60<br></td>
+    <td class="tg-zlpz">XG Boost</td>
+    <td class="tg-wqgo"></td>
+    <td class="tg-wqgo"></td>
+    <td class="tg-wqgo"></td>
+    <td class="tg-wqgo"></td>
+    <td class="tg-wqgo"></td>
+    <td class="tg-wqgo"></td>
   </tr>
   <tr>
-    <td class="tg-d421">Min</td>
-    <td class="tg-ezbu">-3.68</td>
-    <td class="tg-ezbu">-1.42</td>
-    <td class="tg-ezbu">-3.68</td>
+    <td class="tg-1mhx">Bernoulli NB</td>
+    <td class="tg-bk7u">.58</td>
+    <td class="tg-bk7u">.54</td>
+    <td class="tg-bk7u">.72</td>
+    <td class="tg-bk7u">.33</td>
+    <td class="tg-bk7u">.46</td>
+    <td class="tg-bk7u"></td>
   </tr>
   <tr>
-    <td class="tg-f8tv">25%</td>
-    <td class="tg-c3ow">-0.03</td>
-    <td class="tg-c3ow">-0.05</td>
-    <td class="tg-c3ow">-0.04</td>
+    <td class="tg-bt07">Complement NB</td>
+    <td class="tg-1uui">.48</td>
+    <td class="tg-1uui">.52</td>
+    <td class="tg-1uui">.56</td>
+    <td class="tg-1uui">.75</td>
+    <td class="tg-1uui">.63</td>
+    <td class="tg-1uui"></td>
   </tr>
   <tr>
-    <td class="tg-d421">Median</td>
-    <td class="tg-ezbu">0.02</td>
-    <td class="tg-ezbu">0.01</td>
-    <td class="tg-ezbu">0.01</td>
+    <td class="tg-u7jh">Gaussian NB</td>
+    <td class="tg-487o">.52</td>
+    <td class="tg-487o">.45</td>
+    <td class="tg-487o">.85</td>
+    <td class="tg-487o">.05</td>
+    <td class="tg-487o">.10</td>
+    <td class="tg-487o"></td>
   </tr>
   <tr>
-    <td class="tg-f8tv">75%</td>
-    <td class="tg-c3ow">0.07</td>
-    <td class="tg-c3ow">0.07</td>
-    <td class="tg-c3ow">0.07</td>
-  </tr>
-  <tr>
-    <td class="tg-d421">Max</td>
-    <td class="tg-ezbu">28.19<br></td>
-    <td class="tg-ezbu">29.67<br></td>
-    <td class="tg-ezbu">29.67<br></td>
+    <td class="tg-ynie">Multinomial NB</td>
+    <td class="tg-9jwl">.48</td>
+    <td class="tg-9jwl">.52</td>
+    <td class="tg-9jwl">.56</td>
+    <td class="tg-9jwl">.75</td>
+    <td class="tg-9jwl">.64</td>
+    <td class="tg-9jwl"></td>
   </tr>
 </tbody>
 </table>
