@@ -43,10 +43,10 @@ Due to reclassification of some industries in 2005, the QCEW created some new in
 ## Exploratory Data Analysis:
 
 ### 2001 Job Growth Map
-<img src="/img/2001_percap.png" alt="2001 Growth" style=" width:100%;"/>
+<img src="/img/2001percap.png" alt="2001 Growth" style=" width:100%;"/>
 
 ### 2008 Job Growth Map
-<img src="/img/2008_percap.png" alt="2001 Growth" style=" width:100%;"/>
+<img src="/img/2008percap.png" alt="2001 Growth" style=" width:100%;"/>
 
 Initial exploration of the data showed some counter-intuitive results. Despite the 2008 recession being much deeper than 2001, there was considerably more time to recover before the next recession (12 years vs. only 6). However the 2008 recession showed slightly recovery rates than 2001. Additionally the distribution is roughly normal, save a Loving County Texas here or there.
 
