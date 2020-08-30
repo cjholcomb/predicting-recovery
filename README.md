@@ -228,7 +228,7 @@ I also decided to use the model hyperparameters on the Regeressor versions of th
 
 <img src="/img/dtc.png" alt="Decision Tree" style=" width:25%;"/><img src="/img/rfc.png" alt="Random Forest" style=" width:25%;"/><img src="/img/gbc.png" alt="Gradient Boost" style=" width:25%;"/>
 
-<img src="/img/bnc.png" alt="Bernoulli NB" style=" width:25%;"/><img src="/img/gnb.png" alt="Gaussian NB" style=" width:25%;"/><img src="/img/cnb.png" alt="Complement NB" style=" width:25%;"/><img src="/img/mnb.png" alt="Mulitnomial NB" style=" width:25%;"/>
+<img src="/img/bnb.png" alt="Bernoulli NB" style=" width:25%;"/><img src="/img/gnb.png" alt="Gaussian NB" style=" width:25%;"/><img src="/img/cnb.png" alt="Complement NB" style=" width:25%;"/><img src="/img/mnb.png" alt="Mulitnomial NB" style=" width:25%;"/>
 
 Naive Bayes didn't pay off for me (neither did a Dense Multilayer Percpitron network), so I didn't spend too much time tuning them. After a long night, I landed on some optimal parameters.
 
