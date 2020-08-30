@@ -1,6 +1,6 @@
 # Predicting County Recession Recovery
 
-(Header image)
+<img src="/img/recession.jpeg" alt="Recession" style=" width:100%;"/>
 
 Can we model which counties of the US are most likely to recover form the 2020 recession?
 
@@ -11,7 +11,7 @@ With the COVID-19 pandemic still active in the United States, millions of Americ
 I will be considering only the raw number of jobs in any given county. A county will be defined as "recovered" if the number of jobs in any fiscal quarter after the recession event surpasses its peak before the event. I will not be taking into account population change, nor will I be considering if a single person holds more than one job.
 The "recovery event" for both recessions (2001 & 2007) are in Q3 of 2001 and Q3 of 2008 (Sept. 11 and the 2008 housing price collapse). This does not necessarily correspond with the beginning of the official recession, but as these are the most dramatic periods of shift in the economy.
 I will not be considering wages within the county, or the number of firms offering jobs (like I did last time).
-All feature measures will be taken from the quarter of the
+All feature measures will be taken from the quarter of the recession event.
 
 ## Dataset:
 
@@ -42,23 +42,14 @@ Due to reclassification of some industries in 2005, the QCEW created some new in
 
 ## Exploratory Data Analysis:
 
-[put maps here]
+### 2001 Job Growth Map
+<img src="/img/2001_percap.png" alt="2001 Growth" style=" width:100%;"/>
+
+### 2008 Job Growth Map
+<img src="/img/2008_percap.png" alt="2001 Growth" style=" width:100%;"/>
 
 Initial exploration of the data showed some counter-intuitive results. Despite the 2008 recession being much deeper than 2001, there was considerably more time to recover before the next recession (12 years vs. only 6). However the 2008 recession showed slightly recovery rates than 2001. Additionally the distribution is roughly normal, save a Loving County Texas here or there.
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;}
-.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
-  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
-  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-ezbu{background-color:#eee8d5;border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-c3ow{border-color:inherit;text-align:center;vertical-align:top}
-.tg .tg-0pky{border-color:inherit;text-align:left;vertical-align:top}
-.tg .tg-fymr{border-color:inherit;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-d421{background-color:#eee8d5;border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
-.tg .tg-f8tv{border-color:inherit;font-style:italic;text-align:left;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -126,7 +117,8 @@ Initial exploration of the data showed some counter-intuitive results. Despite t
 </tbody>
 </table>
 
-[insert maps and distplots here]
+### Job Growth Distribution
+<img src="/img/distributions.png" alt="2001 Growth" style=" width:100%;"/>
 
 
 ## Journey to a model:
@@ -135,7 +127,6 @@ My first task was to attempt some dimensionality reduction. I had about 2500 fea
 
 To do some basic sanity checks on my PCA, I ran basic Logistic Regression models, and the accuracy score dipped from about 69% to 54%. I begin to use GridSearch to investigate which type of model to use, but I was not happy with the AUC scores I was getting. I dropped the PCA and got a good boost in model accuracy, so I started from scratch in GridSearch without any dimensionality reduction.
 
-[put ROC curves here]
 
 Around this time I discovered an issue with the data. Due to a mistake in indexing, most of the political data I had collected did not find its way to the final dataset. I had a dilemma here, I could remove the political data and proceed with only the industry and population data. This would, however, negate any reason to drop non-county datapoints(Cities and MicroSA) from my dataset. I would need to re-tune the models with nearly twice as much data. Or I could fix the problem and re-tune with the correct political variables. I went with option 2.
 
@@ -145,32 +136,6 @@ After some serious GridSearch time, I managed to get both a Random Forest and Gr
 
 I also decided to use the model hyperparameters on the Regeressor versions of the three best-performing models, to see if I could also predict the change in jobs (rather than just whether a county would recover).
 
-<style type="text/css">
-.tg  {border-collapse:collapse;border-color:#93a1a1;border-spacing:0;}
-.tg td{background-color:#fdf6e3;border-color:#93a1a1;border-style:solid;border-width:1px;color:#002b36;
-  font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{background-color:#657b83;border-color:#93a1a1;border-style:solid;border-width:1px;color:#fdf6e3;
-  font-family:Arial, sans-serif;font-size:14px;font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-487o{background-color:#96fffb;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-gegp{background-color:#fd6864;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-zlpz{background-color:#cbcefb;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-1mhx{background-color:#ffa1fa;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-wqgo{background-color:#cbcefb;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-1uui{background-color:#fe996b;border-color:#000000;color:#000000;text-align:center;vertical-align:top}
-.tg .tg-8385{background-color:#9698ed;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-d0s8{background-color:#fd6864;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-jo73{background-color:#343434;border-color:#000000;color:#ffffff;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-cvjw{background-color:#343434;border-color:#000000;color:#ffffff;font-style:italic;font-weight:bold;text-align:center;
-  vertical-align:top}
-.tg .tg-rai2{background-color:#9698ed;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-qpy6{background-color:#9aff99;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-k0nx{background-color:#9aff99;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-bk7u{background-color:#ffa1fa;border-color:#000000;text-align:center;vertical-align:top}
-.tg .tg-bt07{background-color:#fe996b;border-color:#000000;color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-u7jh{background-color:#96fffb;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-ynie{background-color:#ff00ff;border-color:#000000;font-weight:bold;text-align:left;vertical-align:top}
-.tg .tg-9jwl{background-color:#ff00ff;border-color:#000000;text-align:center;vertical-align:top}
-</style>
 <table class="tg">
 <thead>
   <tr>
@@ -259,7 +224,11 @@ I also decided to use the model hyperparameters on the Regeressor versions of th
 </tbody>
 </table>
 
-[include confusion matricies]
+### Confusion Matrices
+
+<img src="/img/dtc.png" alt="Decision Tree" style=" width:25%;"/><img src="/img/rfc.png" alt="Random Forest" style=" width:25%;"/><img src="/img/.png" alt="Gradient Boost" style=" width:25%;"/>
+
+<img src="/img/bnc.png" alt="Bernoulli NB" style=" width:25%;"/><img src="/img/gnb.png" alt="Gaussian NB" style=" width:25%;"/><img src="/img/cnb.png" alt="Complement NB" style=" width:25%;"/><img src="/img/mnc.png" alt="Mulitnomial NB" style=" width:25%;"/>
 
 Naive Bayes didn't pay off for me (neither did a Dense Multilayer Percpitron network), so I didn't spend too much time tuning them. After a long night, I landed on some optimal parameters.
 
@@ -271,8 +240,9 @@ Feature importance is not really key to my goal of predicting the outcome of thi
 
 ## Results:
 
-[insert maps here]
-[top 10?]
+### 2020 Recession Likelihood of Recovery
+
+<img src="/img/2020_prediction.png" alt="2020 Prediction" style=" width:100%;"/>
 
 
 ## Future Steps:
