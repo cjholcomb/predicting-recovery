@@ -43,10 +43,10 @@ Due to reclassification of some industries in 2005, the QCEW created some new in
 ## Exploratory Data Analysis:
 
 ### 2001 Job Growth Map
-<img src="/img/2001_percap.png" alt="2001 Growth" style=" width:100%;"/>
+<img src="/img/2001percap.png" alt="2001 Growth" style=" width:100%;"/>
 
 ### 2008 Job Growth Map
-<img src="/img/2008_percap.png" alt="2001 Growth" style=" width:100%;"/>
+<img src="/img/2008percap.png" alt="2001 Growth" style=" width:100%;"/>
 
 Initial exploration of the data showed some counter-intuitive results. Despite the 2008 recession being much deeper than 2001, there was considerably more time to recover before the next recession (12 years vs. only 6). However the 2008 recession showed slightly recovery rates than 2001. Additionally the distribution is roughly normal, save a Loving County Texas here or there.
 
@@ -226,9 +226,9 @@ I also decided to use the model hyperparameters on the Regeressor versions of th
 
 ### Confusion Matrices
 
-<img src="/img/dtc.png" alt="Decision Tree" style=" width:25%;"/><img src="/img/rfc.png" alt="Random Forest" style=" width:25%;"/><img src="/img/.png" alt="Gradient Boost" style=" width:25%;"/>
+<img src="/img/dtc.png" alt="Decision Tree" style=" width:25%;"/><img src="/img/rfc.png" alt="Random Forest" style=" width:25%;"/><img src="/img/gbc.png" alt="Gradient Boost" style=" width:25%;"/>
 
-<img src="/img/bnc.png" alt="Bernoulli NB" style=" width:25%;"/><img src="/img/gnb.png" alt="Gaussian NB" style=" width:25%;"/><img src="/img/cnb.png" alt="Complement NB" style=" width:25%;"/><img src="/img/mnc.png" alt="Mulitnomial NB" style=" width:25%;"/>
+<img src="/img/bnb.png" alt="Bernoulli NB" style=" width:25%;"/><img src="/img/gnb.png" alt="Gaussian NB" style=" width:25%;"/><img src="/img/cnb.png" alt="Complement NB" style=" width:25%;"/><img src="/img/mnb.png" alt="Mulitnomial NB" style=" width:25%;"/>
 
 Naive Bayes didn't pay off for me (neither did a Dense Multilayer Percpitron network), so I didn't spend too much time tuning them. After a long night, I landed on some optimal parameters.
 
