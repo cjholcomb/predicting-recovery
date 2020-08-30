@@ -10,9 +10,8 @@ df = pd.read_csv("data/2020_predict_results.csv",
                    dtype={"area_fips": str})
 
 fig = px.choropleth(df, geojson = counties, locations='area_fips', color='likelihood1', 
-                           color_continuous_scale="rainbow",
-                           color_continuous_midpoint=.5,
-                           range_color = (0,1),
+                            color_continuous_scale= 'RdYlGn',
+                           range_color = (0.3,0.7),
                            scope="usa",
                            labels={'delta':'Change in jobs'},
                            title= '2001: per capita'

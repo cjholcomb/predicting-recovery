@@ -1,0 +1,63 @@
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 1        | [1]
+n_estimators         | 6        | [6]
+max_depth            | 2        | [2, 10, 20]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [1, 0.5, 0.1]
+n_estimators         | 20       | [5, 10, 20]
+max_depth            | 2        | [2]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.05, 0.1, 0.2]
+n_estimators         | 80       | [20, 40, 80]
+max_depth            | 2        | [2]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.1]
+n_estimators         | 200      | [80, 200]
+max_depth            | 2        | [2]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.1]
+n_estimators         | 200      | [200, 400]
+max_depth            | 2        | [2]
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.1]
+n_estimators         | 300      | [150, 300]
+max_depth            | 2        | [2]
+
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.1]
+n_estimators         | 350      | [250, 350]
+max_depth            | 2        | [2]
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.1      | [0.1]
+n_estimators         | 375      | [325, 375]
+max_depth            | 2        | [2]
+
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+learning_rate        | 0.01     | [0.1, 0.05, 0.01]
+n_estimators         | 375      | [375]
+max_depth            | 2        | [2]
+
+gbc = GBC(learning_rate =0.01, n_estimators = 375, max_depth = 2)

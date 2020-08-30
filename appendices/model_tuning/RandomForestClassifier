@@ -1,0 +1,74 @@
+parameters:
+{'n_estimators': [5, 10, 20], 'max_depth': [None, 3, 7, 15], 'min_samples_split': [2, 5, 10], 'min_samples_leaf': [1, 10, 50]}
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+n_estimators         | 20       | [5, 10, 20]
+max_depth            | 15       | [None, 3, 7, 15]
+min_samples_split    | 2        | [2, 5, 10]
+min_samples_leaf     | 10       | [1, 10, 50]
+
+
+
+                        parameters:
+                        {'n_estimators': [20, 30, 50], 'max_depth': [15, 30, 50], 'min_samples_split': [2], 'min_samples_leaf': [10, 20]}
+
+                        Result of gridsearch:
+                        Parameter            | Optimal  | Gridsearch values
+                        -------------------------------------------------------
+                        n_estimators         | 50       | [20, 30, 50]
+                        max_depth            | 15       | [15, 30, 50]
+                        min_samples_split    | 2        | [2]
+                        min_samples_leaf     | 20       | [10, 20]
+
+
+
+
+  Result of gridsearch:
+  Parameter            | Optimal  | Gridsearch values
+                                                -------------------------------------------------------
+n_estimators         | 150      | [50, 100, 150]
+max_depth            | 15       | [10, 15, 20]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 20       | [20, 40, 100]
+
+
+Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+n_estimators         | 300      | [150, 300, 500]
+max_depth            | 15       | [13, 15, 17]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 15       | [15, 20, 30]
+
+({'max_depth': 15,
+  'min_samples_leaf': 15,
+  'min_samples_split': 2,
+  'n_estimators': 300},
+
+  Result of gridsearch:
+  Parameter            | Optimal  | Gridsearch values
+  -------------------------------------------------------
+  n_estimators         | 300      | [250, 300, 450]
+  max_depth            | 15       | [13, 15, 17]
+  min_samples_split    | 2        | [2]
+  min_samples_leaf     | 15       | [15, 20, 30]
+
+  Result of gridsearch:
+  Parameter            | Optimal  | Gridsearch values
+  -------------------------------------------------------
+  n_estimators         | 300      | [275, 300, 325]
+  max_depth            | 15       | [15]
+  min_samples_split    | 2        | [2, 5, 10]
+  min_samples_leaf     | 5        | [5, 10, 15]
+
+  Result of gridsearch:
+Parameter            | Optimal  | Gridsearch values
+-------------------------------------------------------
+n_estimators         | 310      | [290, 300, 310]
+max_depth            | 15       | [15]
+min_samples_split    | 2        | [2]
+min_samples_leaf     | 5        | [2, 5, 7]
+
+rfc = RFC(n_estimators = 310, max_depth = 15, min_samples_split=2, min_samples_leaf = 5)
